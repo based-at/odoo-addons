@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+
+  	<data>
+        <template id="assets_backend" name="product_pricelist_report assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/web_highlight/static/base.css"/>
+                <script type="text/javascript" src="/web_highlight/static/view_list.js"></script>
+            </xpath>
+        </template>
+  	</data>
+
+</openerp>
