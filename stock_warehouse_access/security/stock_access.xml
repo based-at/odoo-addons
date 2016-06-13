@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+
+<data>
+
+    <record model="ir.rule" id="stock_warehouse_user_rule">
+        <field name="name">Warehouse per user rule</field>
+        <field name="model_id" ref="stock.model_stock_warehouse"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force"> ['|', ((len(user.warehouse_ids) and -1) + 1, '=', 1), ('id', 'in', [w.id for w in user.warehouse_ids])] </field>
+    </record>
+
+    <record model="ir.rule" id="stock_picking_type_user_rule">
+        <field name="name">Stock Picking Type per user rule</field>
+        <field name="model_id" search="[('model','=','stock.picking.type')]" model="ir.model"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force"> ['|', '|', ('warehouse_id', '=', False), ((len(user.warehouse_ids) and -1) + 1, '=', 1), ('warehouse_id', 'in', [w.id for w in user.warehouse_ids])] </field>
+    </record>
+
+    <record model="ir.rule" id="stock_location_user_rule">
+        <field name="name">Location per user rule</field>
+        <field name="model_id" ref="stock.model_stock_location"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force"> [('id', 'in', [l.id for l in user.location_ids])] </field>
+    </record>
+
+    <record model="ir.rule" id="stock_inventory_user_rule">
+        <field name="name">Inventory per user rule</field>
+        <field name="model_id" ref="stock.model_stock_inventory"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force"> [('location_id', 'in', [l.id for l in user.location_ids])] </field>
+    </record>
+
+    <record model="ir.rule" id="stock_history_user_rule">
+        <field name="name">Stock history per user rule</field>
+        <field name="model_id" search="[('model','=','stock.history')]" model="ir.model"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force"> [('location_id', 'in', [l.id for l in user.location_ids])] </field>
+    </record>
+
+</data>
+</openerp>
