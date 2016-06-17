@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+
+  	<data noupdate="1">
+
+        <record id="view_product_pricelist_report" model="ir.ui.view">
+            <field name="name">product.pricelist.report</field>
+            <field name="model">product.pricelist.report</field>
+            <field name="arch" type="xml">
+                <tree string="Price List Report">
+                    <field name="default_code"/>
+                    <field name="name"/>
+                    <field name="seller_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_product_pricelist_report" model="ir.actions.act_window">
+            <field name="name">Price Lists</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.pricelist.report</field>
+            <field name="context">{"search_default_filter_to_sell":1, "form_view_ref": "product.product_normal_form_view"}</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="view_product_pricelist_report"/>
+            <field name="search_view_id" ref="product.product_search_form_view"/>
+         </record>
+
+  	</data>
+
+</openerp>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <record id="view_product_pricelist_select" model="ir.ui.view">
+          <field name="name">Select price lists</field>
+          <field name="model">product.pricelist.select</field>
+          <field name="arch" type="xml">
+            <form string="Price List Report" version="7.0">
+                <sheet class="oe_form_sheet_200px">
+                    <p>
+                      Please select price lists. Click "View" to see the report.
+                    </p>
+                    <group>
+                        <field name="pricelist_ids" widget="many2many_tags"/>
+                    </group>
+                    <footer>
+                        <button name="view_report" string="View" type="object" class="oe_highlight"  />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </sheet>
+            </form>
+          </field>
+    </record>
+
+    <record id="product_pricelist_action" model="ir.actions.act_window">
+        <field name="name">Price Lists</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.pricelist.select</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="view_product_pricelist_select"/>
+    </record>
+
+    <menuitem
+        action="product_pricelist_action"
+        id="menu_product_pricelist"
+        parent="base.menu_product"
+        sequence="100" groups="base.group_sale_manager"/>
+
+</data>
+</openerp>
